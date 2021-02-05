@@ -29,13 +29,15 @@ namespace ServiceBugDemo.Services
             return Console.Error.WriteAsync(args.Exception.ToString());
         }
 
-        private async Task MessageHandler(ProcessMessageEventArgs args)
+        private Task MessageHandler(ProcessMessageEventArgs args)
         {
             string body = args.Message.Body.ToString();
             Console.WriteLine(body);
 
-            // we can evaluate application logic and use that to determine how to settle the message.
-            await args.CompleteMessageAsync(args.Message);
+            // we don't need this since the AutoCompleteMessages is true by default
+            // await args.CompleteMessageAsync(args.Message);
+            
+            return Task.CompletedTask;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
