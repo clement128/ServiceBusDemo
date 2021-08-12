@@ -18,7 +18,7 @@ namespace ServiceBugDemo.Services
             serviceBusClient = new ServiceBusClient(appOptions.Value.Connectionstring);
             processor = serviceBusClient.CreateProcessor(QUEUE_NAME, new ServiceBusProcessorOptions
             {
-                MaxConcurrentCalls = 1
+                MaxConcurrentCalls = 2
             });
             processor.ProcessMessageAsync += MessageHandler;
             processor.ProcessErrorAsync += ErrorHandler;
